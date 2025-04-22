@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GroupSaver AI - Upgrade Your Gmail Productivity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        .toggle-checkbox:checked {
+            right: 0;
+            background-color: #ef4444;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #fca5a5;
+        }
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-red-600">GroupSaver AI</div>
+                <nav class="hidden md:flex space-x-8">
+                <a href="how-it-works.html" class="text-gray-600 hover:text-red-600">How It Works</a>
+                <a href="support.html" class="text-gray-600 hover:text-red-600">Support</a>
+                </nav>
+                <button class="md:hidden text-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="bg-white py-16">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Upgrade Your Gmail Productivity with GroupSaver AI</h1>
+                <p class="text-xl text-gray-600 mb-12">Pick the plan and billing cycle that fits your workflow.</p>
+                
+                <!-- Billing Toggle -->
+                <div class="flex justify-center items-center mb-16">
+                    <span class="mr-4 font-medium text-gray-700">Monthly</span>
+                    <div class="relative inline-block w-16 mr-4 align-middle select-none">
+                        <input type="checkbox" id="billing-toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                        <label for="billing-toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                    </div>
+                    <span class="font-medium text-gray-700">Annual (Save 20%)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Plans -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Pro Plan -->
+                    <div class="plan-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                        <div class="px-6 py-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
+                            <div class="monthly-price">
+                                <span class="text-4xl font-bold text-red-600">$4.99</span>                                <span class="text-gray-600">/mo</span>
+                            </div>
+                            <div class="annual-price hidden">
+                                <span class="text-4xl font-bold text-red-600">$19.99</span>                            </div>
+                            <p class="monthly-price text-gray-600 mt-2">Up to 10 groups, 5 members per group</p>
+                            <p class="annual-price hidden text-gray-600 mt-2">Same as monthly, billed yearly</p>                            <ul class="mt-6 space-y-3">
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700">Email support</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700">Basic analytics</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700">Up to 5 email templates</span>
+                                </li>
+                            </ul>
+                            <button id="pro-plan-btn" class="mt-8 w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                                <span class="button-text">Select Plan</span>
+                                <div class="spinner hidden"></div>
+                            </button>
+                            <div id="pro-error" class="text-red-600 mt-2 text-sm hidden"></div>
+                        </div>
+                    </div>
+
+                    <!-- Team Plan -->
+                    <div class="plan-card bg-white rounded-lg shadow-lg overflow-hidden border-2 border-red-500 transform scale-105 transition-all duration-300">
+                        <div class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">POPULAR</div>
+                        <div class="px-6 py-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Team</h3>
+                            <div class="monthly-price">
+                                <span class="text-4xl font-bold text-red-600">$19.99</span>                                <span class="text-gray-600">/mo</span>
+                            </div>
+                            <div class="annual-price hidden">
+                                <span class="text-4xl font-bold text-red-600">$199.99</span>                                <span class="text-gray-600">/yr</span>
+                            </div>
+                            <p class="monthly-price text-gray-600 mt-2">Up to 10 groups with unlimited members, then unlimited groups with up to 5 members</p>
+                            <p class="annual-price hidden text-gray-600 mt-2">Up to 10 groups with unlimited members, then unlimited groups with up to 5 members</p>
+                            <ul class="mt-6 space-y-3">
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700">AI-driven group suggestions</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700">Auto-follow-up scheduling</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700">Priority email support</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700">Advanced analytics</span>
+                                </li>
+                            </ul>
+                            <button id="team-plan-btn" class="mt-8 w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                                <span class="button-text">Select Plan</span>
+                                <div class="spinner hidden"></div>
+                            </button>
+                            <div id="team-error" class="text-red-600 mt-2 text-sm hidden"></div>
+                        </div>
+                    </div>
+
+                    <!-- Enterprise Plan -->
+                    <div class="plan-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                        <div class="px-6 py-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                            <div class="monthly-price">
+                                <span class="text-4xl font-bold text-gray-900">$69.99</span>
+                                <span class="text-gray-600">/mo</span>
+                            </div>
+                            <div class="annual-price hidden">
+                                <span class="text-4xl font-bold text-gray-900">$699.99</span>
+                                <span class="text-gray-600">/yr</span>
+                            </div>
+                            <p class="monthly-price text-gray-600 mt-2">Unlimited groups, unlimited members + advanced API access</p>
+                            <p class="annual-price hidden text-gray-600 mt-2">Unlimited groups, unlimited members + advanced API access (billed yearly)</p>
+                            <ul class="mt-6 space-y-3">
+                                <li class="flex items-start">
+                                  <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                  </svg>
+                                  <span class="text-gray-700">Unlimited groups</span>
+                                </li>
+                                <li class="flex items-start">
+                                  <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                  </svg>
+                                  <span class="text-gray-700">Unlimited members</span>
+                                </li>
+                                <li class="flex items-start">
+                                  <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                  </svg>
+                                  <span class="text-gray-700">Extended API integrations</span>
+                                </li>
+                            </ul>
+                            <button id="enterprise-plan-btn" class="mt-8 w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                                <span class="button-text">Select Plan</span>
+                                <div class="spinner hidden"></div>
+                            </button>
+                            <div id="enterprise-error" class="text-red-600 mt-2 text-sm hidden"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Frequently Asked Questions</h2>
+                <div class="max-w-3xl mx-auto space-y-6">
+                    <div class="border-b border-gray-200 pb-6">
+                        <button class="flex justify-between items-center w-full text-left">
+                            <h3 class="text-lg font-medium text-gray-900">How does the free trial work?</h3>
+                            <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="mt-2 text-gray-600">
+                            <p>All plans come with a 14-day free trial. No credit card is required to start your trial. After 14 days, you'll need to choose a plan to continue using GroupSaver AI.</p>
+                        </div>
+                    </div>
+                    <div class="border-b border-gray-200 pb-6">
+                        <button class="flex justify-between items-center w-full text-left">
+                            <h3 class="text-lg font-medium text-gray-900">Can I switch plans later?</h3>
+                            <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="mt-2 text-gray-600">
+                            <p>Yes, you can upgrade or downgrade your plan at any time. When you switch plans, we'll prorate the difference and apply it to your next billing cycle.</p>
+                        </div>
+                    </div>
+                    <div class="border-b border-gray-200 pb-6">
+                        <button class="flex justify-between items-center w-full text-left">
+                            <h3 class="text-lg font-medium text-gray-900">What payment methods do you accept?</h3>
+                            <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="mt-2 text-gray-600">
+                            <p>We accept all major credit cards including Visa, Mastercard, American Express, and Discover. We also support payments via PayPal.</p>
+                        </div>
+                    </div>
+                    <div class="border-b border-gray-200 pb-6">
+                        <button class="flex justify-between items-center w-full text-left">
+                            <h3 class="text-lg font-medium text-gray-900">How do I cancel my subscription?</h3>
+                            <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="mt-2 text-gray-600">
+                            <p>You can cancel your subscription at any time from your account settings. After cancellation, you'll continue to have access to GroupSaver AI until the end of your current billing period.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-red-500 mb-4">GroupSaver AI</h3>
+                    <p class="text-gray-400">Upgrade your Gmail productivity with AI-powered group management.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-red-500">Features</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-red-500">Pricing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-red-500">Integrations</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-red-500">Updates</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="documentation.html" class="text-gray-400 hover:text-red-500">Documentation</a></li>
+                        <li><a href="guides.html" class="text-gray-400 hover:text-red-500">Guides</a></li>
+                        <li><a href="support.html" class="text-gray-400 hover:text-red-500">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-red-500">About</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-red-500">Privacy</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-red-500">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 GroupSaver AI. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-red-500">
+                        <span class="sr-only">Twitter</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-red-500">
+                        <span class="sr-only">GitHub</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.105 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <noscript>
+        <div class="fixed inset-0 bg-red-600 text-white flex items-center justify-center p-4 z-50">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold mb-4">JavaScript is required to upgrade</h2>
+                <p class="mb-4">Please enable JavaScript in your browser to select and purchase a plan.</p>
+                <a href="https://www.enable-javascript.com/" target="_blank" class="underline">Learn how to enable JavaScript</a>
+            </div>
+        </div>
+    </noscript>
+
+    <script>
+        // Initialize Stripe
+        const stripe = Stripe('pk_test_51RGC8qE9XVbTHkiGlEg4qXOhF74EdC6Kg5ebcZU6HW6NMT5hz9xTKHYlKozbcGqvUAjaCqVzALQe9xNNe7LBNjun00G0oE6VwZ');
+        
+        // Billing toggle functionality
+        const billingToggle = document.getElementById('billing-toggle');
+        const monthlyPrices = document.querySelectorAll('.monthly-price');
+        const annualPrices = document.querySelectorAll('.annual-price');
+        
+        billingToggle.addEventListener('change', function() {
+            if (this.checked) {
+                monthlyPrices.forEach(el => el.classList.add('hidden'));
+                annualPrices.forEach(el => el.classList.remove('hidden'));
+            } else {
+                monthlyPrices.forEach(el => el.classList.remove('hidden'));
+                annualPrices.forEach(el => el.classList.add('hidden'));
+            }
+        });
+        
+        // Handle plan selection
+        async function handlePlanSelection(planType, isAnnual) {
+            const buttonId = `${planType}-plan-btn`;
+            const errorId = `${planType}-error`;
+            
+            const button = document.getElementById(buttonId);
+            const buttonText = button.querySelector('.button-text');
+            const spinner = button.querySelector('.spinner');
+            const errorElement = document.getElementById(errorId);
+            
+            // Get email from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const userEmail = urlParams.get('email');
+            
+            if (!userEmail) {
+                errorElement.textContent = 'Please provide your email address in the URL (?email=your@email.com)';
+                errorElement.classList.remove('hidden');
+                return;
+            }
+            
+            // Determine price ID based on plan and billing cycle
+            let priceId;
+            if (planType === 'pro') {
+                priceId = isAnnual
+                  ? 'price_1RGCC9E9XVbTHkiGbYlEf7E0'  // Pro annual
+                  : 'price_1RGCBBE9XVbTHkiGBF2uJF2o'; // Pro monthly
+            } else if (planType === 'team') {
+                priceId = isAnnual
+                  ? 'price_1RGCDmE9XVbTHkiGliOPK9OM'  // Team annual
+                  : 'price_1RGCD0E9XVbTHkiG5EAuKSYv'; // Team monthly
+            } else if (planType === 'enterprise') {
+                priceId = isAnnual
+                  ? 'price_1RGE00E9XVbTHkiGENTPRISEYR'  // Enterprise annual (replace with real ID)
+                  : 'price_1RGDZvE9XVbTHkiGENTPRISMONTH'; // Enterprise monthly (replace with real ID)
+            }
+            
+            // Show loading state
+            button.disabled = true;
+            buttonText.classList.add('hidden');
+            spinner.classList.remove('hidden');
+            errorElement.classList.add('hidden');
+            
+            try {
+                // Call backend to create checkout session
+                const response = await fetch('https://groupsaver-backend.onrender.com/create-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        priceId: priceId,
+                        clientEmail: userEmail
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.message || 'Failed to create checkout session');
+                }
+                
+                // Redirect to Stripe Checkout
+                const result = await stripe.redirectToCheckout({
+                    sessionId: data.sessionId
+                });
+                
+                if (result.error) {
+                    throw new Error(result.error.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                errorElement.textContent = error.message || 'An error occurred. Please try again.';
+                errorElement.classList.remove('hidden');
+                
+                // Reset button state
+                button.disabled = false;
+                buttonText.classList.remove('hidden');
+                spinner.classList.add('hidden');
+            }
+        }
+        
+        // Add event listeners to plan buttons
+        document.getElementById('pro-plan-btn').addEventListener('click', () => {
+            const isAnnual = billingToggle.checked;
+            handlePlanSelection('pro', isAnnual);
+        });
+        
+        document.getElementById('team-plan-btn').addEventListener('click', () => {
+            const isAnnual = billingToggle.checked;
+            handlePlanSelection('team', isAnnual);
+        });
+
+        document.getElementById('enterprise-plan-btn').addEventListener('click', () => {
+            const isAnnual = billingToggle.checked;
+            handlePlanSelection('enterprise', isAnnual);
+        });
+    </script>
+</body>
+</html>
