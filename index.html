@@ -56,33 +56,23 @@
                 <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Upgrade Your Gmail Productivity with GroupSaver AI</h1>
                 <p class="text-xl text-gray-600 mb-12">Pick the plan and billing cycle that fits your workflow.</p>
                 
-                <!-- Billing Toggle -->
-                <div class="flex justify-center items-center mb-16">
-                    <span class="mr-4 font-medium text-gray-700">Monthly</span>
-                    <div class="relative inline-block w-16 mr-4 align-middle select-none">
-                        <input type="checkbox" id="billing-toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
-                        <label for="billing-toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                    </div>
-                    <span class="font-medium text-gray-700">Annual (Save 20%)</span>
-                </div>
             </div>
         </section>
 
         <!-- Pricing Plans -->
         <section class="py-16 bg-gray-50">
             <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Pro Plan -->
+                <div class="grid grid-cols-1 gap-8">
+                    <!-- Unlimited Plan -->
                     <div class="plan-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
                         <div class="px-6 py-8">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
-                            <div class="monthly-price">
-                                <span class="text-4xl font-bold text-red-600">$4.99</span>                                <span class="text-gray-600">/mo</span>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Unlimited</h3>
+                            <div>
+                                <span class="text-4xl font-bold text-red-600">$4.99</span>
+                                <span class="text-gray-600">/mo</span>
                             </div>
-                            <div class="annual-price hidden">
-                                <span class="text-4xl font-bold text-red-600">$19.99</span>                            </div>
-                            <p class="monthly-price text-gray-600 mt-2">Up to 10 groups, 5 members per group</p>
-                            <p class="annual-price hidden text-gray-600 mt-2">Same as monthly, billed yearly</p>                            <ul class="mt-6 space-y-3">
+                            <p class="text-gray-600 mt-2">Unlimited groups & members</p>
+                            <ul class="mt-6 space-y-3">
                                 <li class="flex items-start">
                                     <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -107,95 +97,6 @@
                                 <div class="spinner hidden"></div>
                             </button>
                             <div id="pro-error" class="text-red-600 mt-2 text-sm hidden"></div>
-                        </div>
-                    </div>
-
-                    <!-- Team Plan -->
-                    <div class="plan-card bg-white rounded-lg shadow-lg overflow-hidden border-2 border-red-500 transform scale-105 transition-all duration-300">
-                        <div class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">POPULAR</div>
-                        <div class="px-6 py-8">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Team</h3>
-                            <div class="monthly-price">
-                                <span class="text-4xl font-bold text-red-600">$19.99</span>                                <span class="text-gray-600">/mo</span>
-                            </div>
-                            <div class="annual-price hidden">
-                                <span class="text-4xl font-bold text-red-600">$199.99</span>                                <span class="text-gray-600">/yr</span>
-                            </div>
-                            <p class="monthly-price text-gray-600 mt-2">Up to 10 groups with unlimited members, then unlimited groups with up to 5 members</p>
-                            <p class="annual-price hidden text-gray-600 mt-2">Up to 10 groups with unlimited members, then unlimited groups with up to 5 members</p>
-                            <ul class="mt-6 space-y-3">
-                                <li class="flex items-start">
-                                    <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    <span class="text-gray-700">AI-driven group suggestions</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    <span class="text-gray-700">Auto-follow-up scheduling</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    <span class="text-gray-700">Priority email support</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    <span class="text-gray-700">Advanced analytics</span>
-                                </li>
-                            </ul>
-                            <button id="team-plan-btn" class="mt-8 w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
-                                <span class="button-text">Select Plan</span>
-                                <div class="spinner hidden"></div>
-                            </button>
-                            <div id="team-error" class="text-red-600 mt-2 text-sm hidden"></div>
-                        </div>
-                    </div>
-
-                    <!-- Enterprise Plan -->
-                    <div class="plan-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
-                        <div class="px-6 py-8">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
-                            <div class="monthly-price">
-                                <span class="text-4xl font-bold text-gray-900">$69.99</span>
-                                <span class="text-gray-600">/mo</span>
-                            </div>
-                            <div class="annual-price hidden">
-                                <span class="text-4xl font-bold text-gray-900">$699.99</span>
-                                <span class="text-gray-600">/yr</span>
-                            </div>
-                            <p class="monthly-price text-gray-600 mt-2">Unlimited groups, unlimited members + advanced API access</p>
-                            <p class="annual-price hidden text-gray-600 mt-2">Unlimited groups, unlimited members + advanced API access (billed yearly)</p>
-                            <ul class="mt-6 space-y-3">
-                                <li class="flex items-start">
-                                  <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                  </svg>
-                                  <span class="text-gray-700">Unlimited groups</span>
-                                </li>
-                                <li class="flex items-start">
-                                  <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                  </svg>
-                                  <span class="text-gray-700">Unlimited members</span>
-                                </li>
-                                <li class="flex items-start">
-                                  <svg class="h-6 w-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                  </svg>
-                                  <span class="text-gray-700">Extended API integrations</span>
-                                </li>
-                            </ul>
-                            <button id="enterprise-plan-btn" class="mt-8 w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
-                                <span class="button-text">Select Plan</span>
-                                <div class="spinner hidden"></div>
-                            </button>
-                            <div id="enterprise-error" class="text-red-600 mt-2 text-sm hidden"></div>
                         </div>
                     </div>
                 </div>
@@ -324,116 +225,58 @@
         // Backend base URL
         const BACKEND_URL = 'https://groupsaver-backend.onrender.com';
         const stripe = Stripe('pk_test_51RGC8JCaZSTUYtgisF3fM3vA49jEnM8EEAk0YPOhscHzrQU5uCKjS0jepON02XFZA4TxgeijULc6ojDaRDIYoUJx00YT9Zr44r');
-        
-        // Billing toggle functionality
-        const billingToggle = document.getElementById('billing-toggle');
-        const monthlyPrices = document.querySelectorAll('.monthly-price');
-        const annualPrices = document.querySelectorAll('.annual-price');
-        
-        billingToggle.addEventListener('change', function() {
-            if (this.checked) {
-                monthlyPrices.forEach(el => el.classList.add('hidden'));
-                annualPrices.forEach(el => el.classList.remove('hidden'));
-            } else {
-                monthlyPrices.forEach(el => el.classList.remove('hidden'));
-                annualPrices.forEach(el => el.classList.add('hidden'));
-            }
-        });
-        
-        // Handle plan selection
-        async function handlePlanSelection(planType, isAnnual) {
-            const buttonId = `${planType}-plan-btn`;
-            const errorId = `${planType}-error`;
-            
-            const button = document.getElementById(buttonId);
+
+        // Handle plan selection for Unlimited plan
+        async function handlePlanSelection() {
+            const button = document.getElementById('pro-plan-btn');
             const buttonText = button.querySelector('.button-text');
             const spinner = button.querySelector('.spinner');
-            const errorElement = document.getElementById(errorId);
-            
+            const errorElement = document.getElementById('pro-error');
+
             // Get email from URL
             const urlParams = new URLSearchParams(window.location.search);
             const userEmail = urlParams.get('email');
-            
+
             if (!userEmail) {
                 errorElement.textContent = 'Please provide your email address in the URL (?email=your@email.com)';
                 errorElement.classList.remove('hidden');
                 return;
             }
-            
-            // Determine price ID based on plan and billing cycle
-            let priceId;
-            if (planType === 'pro') {
-                priceId = isAnnual
-                  ? 'price_1RGCC9E9XVbTHkiGbYlEf7E0'  // Pro annual
-                  : 'price_1RIbD2CaZSTUYtgi7h4MVlYR'; // Pro monthly (TEST)
-            } else if (planType === 'team') {
-                priceId = isAnnual
-                  ? 'price_1RGCDmE9XVbTHkiGliOPK9OM'  // Team annual
-                  : 'price_1RGCD0E9XVbTHkiG5EAuKSYv'; // Team monthly
-            } else if (planType === 'enterprise') {
-                priceId = isAnnual
-                  ? 'price_1RGE00E9XVbTHkiGENTPRISEYR'  // Enterprise annual (replace with real ID)
-                  : 'price_1RGDZvE9XVbTHkiGENTPRISMONTH'; // Enterprise monthly (replace with real ID)
-            }
-            
+
+            const priceId = 'price_1RIbD2CaZSTUYtgi7h4MVlYR'; // Unlimited monthly
+
             // Show loading state
             button.disabled = true;
             buttonText.classList.add('hidden');
             spinner.classList.remove('hidden');
             errorElement.classList.add('hidden');
-            
+
             try {
-                // Call backend to create checkout session
                 const response = await fetch(`${BACKEND_URL}/create-session`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        priceId,
-                        clientEmail: userEmail
-                    })
+                    body: JSON.stringify({ priceId, clientEmail: userEmail })
                 });
 
                 const data = await response.json();
-
                 if (!response.ok || !data.sessionId) {
                     throw new Error(data.message || 'Failed to create checkout session');
                 }
 
-                // Proper redirect to Stripe Checkout
-                const { error } = await stripe.redirectToCheckout({
-                    sessionId: data.sessionId
-                });
-
-                if (error) {
-                    throw new Error(error.message);
-                }
+                const { error } = await stripe.redirectToCheckout({ sessionId: data.sessionId });
+                if (error) throw new Error(error.message);
             } catch (error) {
                 console.error('Error:', error);
                 errorElement.textContent = error.message || 'An error occurred. Please try again.';
                 errorElement.classList.remove('hidden');
-
-                // Reset button state
+                // Reset button
                 button.disabled = false;
                 buttonText.classList.remove('hidden');
                 spinner.classList.add('hidden');
             }
         }
-        
-        // Add event listeners to plan buttons
-        document.getElementById('pro-plan-btn').addEventListener('click', () => {
-            const isAnnual = billingToggle.checked;
-            handlePlanSelection('pro', isAnnual);
-        });
-        
-        document.getElementById('team-plan-btn').addEventListener('click', () => {
-            const isAnnual = billingToggle.checked;
-            handlePlanSelection('team', isAnnual);
-        });
 
-        document.getElementById('enterprise-plan-btn').addEventListener('click', () => {
-            const isAnnual = billingToggle.checked;
-            handlePlanSelection('enterprise', isAnnual);
-        });
+        document.getElementById('pro-plan-btn').addEventListener('click', handlePlanSelection);
     </script>
 </body>
 </html>
