@@ -384,34 +384,32 @@
                 // Call backend to create checkout session
                 const response = await fetch('https://groupsaver-backend.onrender.com/create-session', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        priceId: priceId,
+                        priceId,
                         clientEmail: userEmail
                     })
                 });
-                
+
                 const data = await response.json();
-                
-                if (!response.ok) {
+
+                if (!response.ok || !data.sessionId) {
                     throw new Error(data.message || 'Failed to create checkout session');
                 }
-                
-                // Redirect to Stripe Checkout
-                const result = await stripe.redirectToCheckout({
+
+                // Proper redirect to Stripe Checkout
+                const { error } = await stripe.redirectToCheckout({
                     sessionId: data.sessionId
                 });
-                
-                if (result.error) {
-                    throw new Error(result.error.message);
+
+                if (error) {
+                    throw new Error(error.message);
                 }
             } catch (error) {
                 console.error('Error:', error);
                 errorElement.textContent = error.message || 'An error occurred. Please try again.';
                 errorElement.classList.remove('hidden');
-                
+
                 // Reset button state
                 button.disabled = false;
                 buttonText.classList.remove('hidden');
